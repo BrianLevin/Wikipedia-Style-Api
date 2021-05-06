@@ -23,7 +23,7 @@ const Article = mongoose.model("Article", articleSchema);
 
 app.get("/articles", function(req,res){
 // query db and find documents inside articles collection
-    Article.find(function(req,foundArticles){
+    Article.find(function(err,foundArticles){
 
         if(!err){
             // found articles
@@ -55,6 +55,16 @@ app.post("/articles", function (req,res){
      }); 
 
      
+});
+
+app.delete("/articles", function(req,res){
+    Article.deleteMany(function(err){
+        if (!err){
+            res.send("succesfully deleted all articles.");
+        } else {
+            res.send(err)
+        }
+    });
 });
 
 
