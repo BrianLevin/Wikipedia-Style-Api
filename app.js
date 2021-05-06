@@ -36,6 +36,12 @@ app.get("/articles", function(req,res){
     });
 });
 
+app.post("/articles", function (req,res){
+// grab data sent through
+    console.log(req.body.title);
+     console.log(req.body.content);
+});
+
 
 
 
