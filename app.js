@@ -21,51 +21,96 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
-app.get("/articles", function(req,res){
-// query db and find documents inside articles collection
-    Article.find(function(err,foundArticles){
+app.route("/articles")
 
-        if(!err){
-            // found articles
-            res.send(foundArticles)
+.get(function(req,res){
+    // query db and find documents inside articles collection
+        Article.find(function(err,foundArticles){
+    
+            if(!err){
+                // found articles
+                res.send(foundArticles)
+    
+            } else{
+                res.send(err)
+            }
+    
+        });
+    }).post(function (req,res){
+            // grab data sent through
+                console.log();
+                 console.log();
+            // document which will hold the collection values
+                 const newArticle = new Article ({
+                     title: req.body.title,
+                     content:req.body.content
+                 });
+                 // save post to db
+                 newArticle.save(function(err){
+                     if(!err){
+                     res.send("Sucessfully added a new article");
+                     } else{
+                         res.send(err);
+                     }
+                 });
+            
+            }).delete(function(req,res){
+                    Article.deleteMany(function(err){
+                        if (!err){
+                            res.send("succesfully deleted all articles.");
+                        } else {
+                            res.send(err)
+                        }
+                    });
+                });
 
-        } else{
-            res.send(err)
-        }
 
-    });
-});
 
-app.post("/articles", function (req,res){
-// grab data sent through
-    console.log();
-     console.log();
-// document which will hold the collection values
-     const newArticle = new Article ({
-         title: req.body.title,
-         content:req.body.content
-     });
-     // save post to db
-     newArticle.save(function(err){
-         if(!err){
-         res.send("Sucessfully added a new article");
-         } else{
-             res.send(err);
-         }
-     }); 
+// app.get("/articles", function(req,res){
+// // query db and find documents inside articles collection
+//     Article.find(function(err,foundArticles){
+
+//         if(!err){
+//             // found articles
+//             res.send(foundArticles)
+
+//         } else{
+//             res.send(err)
+//         }
+
+//     });
+// });
+
+// app.post("/articles", function (req,res){
+// // grab data sent through
+//     console.log();
+//      console.log();
+// // document which will hold the collection values
+//      const newArticle = new Article ({
+//          title: req.body.title,
+//          content:req.body.content
+//      });
+//      // save post to db
+//      newArticle.save(function(err){
+//          if(!err){
+//          res.send("Sucessfully added a new article");
+//          } else{
+//              res.send(err);
+//          }
+//      }); 
 
      
-});
+// });
 
-app.delete("/articles", function(req,res){
-    Article.deleteMany(function(err){
-        if (!err){
-            res.send("succesfully deleted all articles.");
-        } else {
-            res.send(err)
-        }
-    });
-});
+// app.delete("/articles", function(req,res){
+//     Article.deleteMany(function(err){
+//         if (!err){
+//             res.send("succesfully deleted all articles.");
+//         } else {
+//             res.send(err)
+//         }
+//     });
+// });
 
 
 
