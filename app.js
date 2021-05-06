@@ -46,7 +46,15 @@ app.post("/articles", function (req,res){
          content:req.body.content
      });
      // save post to db
-     newArticle.save()
+     newArticle.save(function(err){
+         if(!err){
+         res.send("Sucessfully added a new article");
+         } else{
+             res.send(err);
+         }
+     }); 
+
+     
 });
 
 
