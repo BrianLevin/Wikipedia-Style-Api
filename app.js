@@ -38,8 +38,15 @@ app.get("/articles", function(req,res){
 
 app.post("/articles", function (req,res){
 // grab data sent through
-    console.log(req.body.title);
-     console.log(req.body.content);
+    console.log();
+     console.log();
+// document which will hold the collection values
+     const newArticle = new Article ({
+         title: req.body.title,
+         content:req.body.content
+     });
+     // save post to db
+     newArticle.save()
 });
 
 
