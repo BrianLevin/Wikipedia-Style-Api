@@ -25,7 +25,14 @@ app.get("/articles", function(req,res){
 // query db and find documents inside articles collection
     Article.find(function(req,foundArticles){
 
-        console.log(foundArticles);
+        if(!err){
+            // found articles
+            res.send(foundArticles)
+
+        } else{
+            res.send(err)
+        }
+
     });
 });
 
