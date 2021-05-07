@@ -75,8 +75,13 @@ app.route("/articles")
 // app.route to get specofic articles
 app.route("/articles/:articleTitle")
 
+req.params.articleTitle = "Jack-Bauer"
+
 .get(function(req,res){
 
+   
+// look through collection of articles, find one document,  where title is = to request parameters
+Article.findOne({title:req.params.articleTtitle }, function(err, foundArticle));
 
 })
 
