@@ -80,7 +80,7 @@ app.route("/articles/:articleTitle")
 
    
 // look through collection of articles, find one document,  where title is = to request parameters
-Article.findOne({title:req.params.articleTtitle }, function(err, foundArticle){
+Article.findOne({title:req.params.articleTitle }, function(err, foundArticle){
 if (foundArticle) {
     res.send(foundArticle);
 } else{
@@ -88,6 +88,25 @@ if (foundArticle) {
 }
 
 });
+
+})
+
+.put(function(req,res){
+Article.update(
+    // look for article
+    {title:req.params.articleTitle },
+
+    // update article
+    {title:req.body.title, content: req.body.content},
+    
+    {overwrite: true},
+    function(err) {
+        if(err) {
+            res.send("Sucessfully updated article")
+        }
+    }
+
+)
 
 });
 
