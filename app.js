@@ -21,6 +21,9 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
+
+///////////// Requests targeting all articles
+
 app.route("/articles")
 
 .get(function(req,res){
@@ -66,54 +69,16 @@ app.route("/articles")
 
 
 
-// app.get("/articles", function(req,res){
-// // query db and find documents inside articles collection
-//     Article.find(function(err,foundArticles){
-
-//         if(!err){
-//             // found articles
-//             res.send(foundArticles)
-
-//         } else{
-//             res.send(err)
-//         }
-
-//     });
-// });
-
-// app.post("/articles", function (req,res){
-// // grab data sent through
-//     console.log();
-//      console.log();
-// // document which will hold the collection values
-//      const newArticle = new Article ({
-//          title: req.body.title,
-//          content:req.body.content
-//      });
-//      // save post to db
-//      newArticle.save(function(err){
-//          if(!err){
-//          res.send("Sucessfully added a new article");
-//          } else{
-//              res.send(err);
-//          }
-//      }); 
-
-     
-// });
-
-// app.delete("/articles", function(req,res){
-//     Article.deleteMany(function(err){
-//         if (!err){
-//             res.send("succesfully deleted all articles.");
-//         } else {
-//             res.send(err)
-//         }
-//     });
-// });
 
 
+///////////// Requests targeting all articles frequests targeting a specific article
+// app.route to get specofic articles
+app.route("/articles/:articleTitle")
 
+.get(function(req,res){
+
+
+})
 
 
 app.listen(3000, function() {
