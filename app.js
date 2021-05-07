@@ -98,17 +98,28 @@ Article.update(
 
     // update article
     {title:req.body.title, content: req.body.content},
-    
+// overwrite document what is epcified in the update
     {overwrite: true},
     function(err) {
-        if(err) {
+        if(!err) {
             res.send("Sucessfully updated article")
         }
     }
 
 )
 
-});
+})
+
+.patch(function(req,res){
+
+    Article.update(
+        //condition
+        {title: req.params.articleTitle},
+
+        // specific conditions you want to update
+        {$set: {title: "Chuck Norris " }}
+    )
+})
 
 
 app.listen(3000, function() {
