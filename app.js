@@ -117,9 +117,16 @@ Article.update(
         {title: req.params.articleTitle},
 
         // specific conditions you want to update
-        {$set: {title: "Chuck Norris " }}
-    )
-})
+        {set: req.body},
+        function(err){
+            if(!err){
+                res.send("succcessfully updated articles")
+            } else{
+                res.send(err);
+            }
+        }
+    );
+});
 
 
 app.listen(3000, function() {
